@@ -1,0 +1,28 @@
+---
+title: "R语言计算技术邻近性"
+author: "wkp"
+date: "2022-04-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r error=FALSE, warning=FALSE, message=FALSE}
+setwd("E:\\Office Account\\2022\\R语言-技术邻近性")
+library(readxl)
+X <- read_xlsx("tech.xlsx",sheet = 1)
+X
+Consine=matrix(data=0,nrow =dim(X)[1],ncol = dim(X)[1])
+for (i in 1:dim(X)[1])
+  for (j in 1:dim(X)[1])
+      Consine[i,j] = sum(t(X[i,])*X[j,])/sqrt((sum(X[i,]^2))*sum(X[j,]^2))
+Consine
+```
